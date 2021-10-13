@@ -79,4 +79,11 @@ let start_server = async function () {
         throw e
     }
 }
-start_server()
+
+module.exports = {
+    start: function () {
+        return start_server();
+    }
+}
+
+
