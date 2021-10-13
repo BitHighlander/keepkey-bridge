@@ -23,6 +23,9 @@ const server = require('http').Server(app);
 let API_PORT:any = process.env["API_PORT_BRIDGE"] || "3000"
 API_PORT = parseInt(API_PORT)
 
+//hardware
+let kk = require('./keepkey')
+
 let corsOptions = {
     origin: function (origin, callback) {
         if (true) {
@@ -67,12 +70,7 @@ app.use(errorHandler)
 let start_server = async function () {
     let tag = TAG + " | start_server | "
     try {
-
-
         server.listen(API_PORT, () => console.log(`Server started listening to port ${API_PORT}`));
-
-        //TODO handle exit
-
         return true
     }catch(e){
         log.error(tag,"e: ",e)
@@ -81,9 +79,12 @@ let start_server = async function () {
 }
 
 module.exports = {
-    start: function () {
+    startServer: function () {
         return start_server();
-    }
+    },
+    startKeepkey: function () {
+        return kk.start();
+    },
 }
 
 
