@@ -1,6 +1,6 @@
 /*
 
-    Pioneer REST endpoints
+    Bridge REST endpoints
 
 
 
@@ -11,8 +11,35 @@ const pjson = require('../../package.json');
 const log = require('@pioneer-platform/loggerdog')()
 const os = require("os")
 
+//keepkey
+const core = require('@shapeshiftoss/hdwallet-core')
+const KK = require('@shapeshiftoss/hdwallet-keepkey-nodewebusb')
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const adapter = KK.NodeWebUSBKeepKeyAdapter.useKeyring(new core.Keyring())
+
 //rest-ts
 import { Body, Controller, Get, Post, Route, Tags, SuccessResponse, Query, Request, Response, Header } from 'tsoa';
+
+
+export interface Status {
+    success: boolean,
+    username: string,
+    status: string,
+    state: number
+}
+
+export interface SignedTx {
+    success: boolean,
+    status: string,
+    signedTx: any
+}
+
+//PairResponce
+export interface PairResponce {
+    success: boolean,
+    username: string,
+    code: string
+}
 
 export interface Error{
     success:boolean
@@ -30,7 +57,7 @@ export class ApiError extends Error {
 }
 
 //route
-@Tags('Status Endpoints')
+@Tags('Client Endpoints')
 @Route('')
 export class IndexController extends Controller {
 
@@ -41,19 +68,17 @@ export class IndexController extends Controller {
         Health endpoint
     */
 
-    @Get('/info')
+    @Get('/status')
     public async health() {
-        let tag = TAG + " | health | "
+        let tag = TAG + " | status | "
         try{
 
 
-            let output:any = {
-                online:true,
-                hostname:os.hostname(),
-                uptime:os.uptime(),
-                loadavg:os.loadavg(),
-                name:pjson.name,
-                version:pjson.version
+            let output:Status = {
+                success: true,
+                username: "test",
+                status: 'keepkey unlocked',
+                state: 3
             }
 
             return(output)
@@ -68,14 +93,16 @@ export class IndexController extends Controller {
         }
     }
 
-    @Get('/init')
-    public async init() {
-        let tag = TAG + " | init | "
+    @Get('/pair/:code')
+    public async pair() {
+        let tag = TAG + " | pair | "
         try{
 
 
-            let output:any = {
-                init:true
+            let output:PairResponce = {
+                success: true,
+                username: "USERNAME",
+                code:"1234"
             }
 
             return(output)
@@ -90,14 +117,16 @@ export class IndexController extends Controller {
         }
     }
 
-    @Get('/ping')
-    public async ping() {
-        let tag = TAG + " | ping | "
+    @Get('/user')
+    public async user() {
+        let tag = TAG + " | user | "
         try{
 
 
             let output:any = {
-                init:true
+                success: true,
+                username: "USERNAME",
+                code:"1234"
             }
 
             return(output)
@@ -112,18 +141,16 @@ export class IndexController extends Controller {
         }
     }
 
-    //TODO if pair show popup
-    //TODO if paired allow pubkey
-    //TODO if sign, display tx Info
-
-    @Get('/exchange/{kind}')
-    public async exchange() {
-        let tag = TAG + " | exchange | "
+    @Post('/sign')
+    public async signTransaction() {
+        let tag = TAG + " | signTransaction | "
         try{
 
 
-            let output:any = {
-                init:true
+            let output:SignedTx = {
+                success: true,
+                status: 'signed',
+                signedTx:{foo:"bar"}
             }
 
             return(output)

@@ -20,11 +20,8 @@ const swaggerDocument = require('../api/dist/swagger.json')
 
 const app = express();
 const server = require('http').Server(app);
-let API_PORT:any = process.env["API_PORT_BRIDGE"] || "3000"
+let API_PORT:any = process.env["API_PORT_BRIDGE"] || "1646"
 API_PORT = parseInt(API_PORT)
-
-//hardware
-let kk = require('./keepkey')
 
 let corsOptions = {
     origin: function (origin, callback) {
@@ -78,13 +75,14 @@ let start_server = async function () {
     }
 }
 
-module.exports = {
-    startServer: function () {
-        return start_server();
-    },
-    startKeepkey: function () {
-        return kk.start();
-    },
-}
+start_server()
+
+// module.exports = {
+//     startServer: function () {
+//         return start_server();
+//     },
+//     startKeepkey: function () {
+//     },
+// }
 
 
