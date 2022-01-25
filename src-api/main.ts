@@ -23,9 +23,6 @@ const server = require('http').Server(app);
 let API_PORT:any = process.env["API_PORT_BRIDGE"] || "3000"
 API_PORT = parseInt(API_PORT)
 
-//hardware
-let kk = require('./keepkey')
-
 let corsOptions = {
     origin: function (origin, callback) {
         if (true) {
@@ -77,14 +74,7 @@ let start_server = async function () {
         throw e
     }
 }
+start_server()
 
-module.exports = {
-    startServer: function () {
-        return start_server();
-    },
-    startKeepkey: function () {
-        return kk.start();
-    },
-}
 
 
