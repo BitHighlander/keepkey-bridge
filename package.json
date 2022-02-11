@@ -30,6 +30,8 @@
   "dependencies": {
     "@pioneer-platform/loggerdog": "^8.1.17",
     "@quasar/extras": "^1.10.4",
+    "@shapeshiftoss/hdwallet-core": "^1.18.4",
+    "@shapeshiftoss/hdwallet-keepkey-nodewebusb": "^1.18.4",
     "@types/node": "^12.20.11",
     "autoprefixer": "^9.8.6",
     "axios": "^0.18.1",
