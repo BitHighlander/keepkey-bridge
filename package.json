@@ -1,7 +1,7 @@
 {
   "name": "@KeepKey/keepkey-bridge",
   "version": "0.0.12",
-  "description": "A REST interface for the KeepKey Client",
+  "description": "A REST interface for the KeepKey",
   "main": "dist/main.js",
   "author": "highlander <highlander@keepkey.com>",
   "scripts": {
