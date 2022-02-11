@@ -1,9 +1,9 @@
 {
-  "name": "@bithighlander/keepkey-bridge",
+  "name": "@KeepKey/keepkey-bridge",
   "version": "0.0.12",
-  "description": "A KeepKey support application",
+  "description": "A REST interface for the KeepKey Client",
   "main": "dist/main.js",
-  "author": "highlander <bithighlander@gmail.com>",
+  "author": "highlander <highlander@keepkey.com>",
   "scripts": {
     "npm": "npm i",
     "npm-upgrade": "npm update",

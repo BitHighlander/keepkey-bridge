@@ -20,7 +20,7 @@ const swaggerDocument = require('../api/dist/swagger.json')
 
 const app = express();
 const server = require('http').Server(app);
-let API_PORT:any = process.env["API_PORT_BRIDGE"] || "3000"
+let API_PORT:any = process.env["API_PORT_BRIDGE"] || "1646"
 API_PORT = parseInt(API_PORT)
 
 let corsOptions = {
