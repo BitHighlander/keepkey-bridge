@@ -46,7 +46,7 @@ export class ApiError extends Error {
 }
 
 //route
-@Tags('Device Bridge')
+@Tags('Raw KeepKey Device I/0')
 @Route('')
 export class bridgeController extends Controller {
 
